@@ -3,8 +3,6 @@ import time
 import heapq
 from collections import namedtuple
 
-log_data = namedtuple('log_data', ['data', 'string', 'file'])
-
 
 class LogDateException(Exception):
     pass
@@ -14,8 +12,10 @@ class LogCombiner:
     """
     Provide generator to merge list of log files into one file
     """
+    _log_data = namedtuple('log_data', ['data', 'string', 'file'])
+
     @staticmethod
-    def parse_date(string, reg_pattern):
+    def _parse_date(string, reg_pattern):
         """
         :param string: date in string format
         :param reg_pattern: regexp date pattern
@@ -46,7 +46,7 @@ class LogCombiner:
             log_string = log_file.readline()
             if log_string:
                 try:
-                    date = LogCombiner.parse_date(log_string, self._parse_pattern)
+                    date = LogCombiner._parse_date(log_string, self._parse_pattern)
                     heapq.heappush(self._log_heap, (date, log_string, log_file))
                     push_flag = False
                 except LogDateException:
@@ -76,7 +76,7 @@ class LogCombiner:
         :return:
         """
         while len(self._log_files):
-            log_item = log_data(*self._pop_heap_data())
+            log_item = LogCombiner._log_data(*self._pop_heap_data())
             yield log_item.string
             self._push_heap_data(log_item.file)
         return
