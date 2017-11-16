@@ -19,7 +19,7 @@ class LogCombiner:
         date = date_match.group(1)
         return time.strptime(date, '%d-%m-%Y %H:%M:%S')
 
-    def __init__(self, result_file_name, log_files, date_parse_pattern):
+    def __init__(self, log_files, date_parse_pattern):
         self.log_heap = []
         self.parse_pattern = date_parse_pattern
         self.log_files = log_files
