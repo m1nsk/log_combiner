@@ -68,8 +68,9 @@ try:
     for log in logs:
         log_files.append(open(log))
     logCombiner = LogCombiner('test', log_files, r'\[(.+)\]\s+')
-    for log_string in logCombiner.log_generator():
-        print(log_string)
+    with open('test_log.txt', 'w', encoding='utf-8') as file:
+        for log_string in logCombiner.log_generator():
+                file.write(log_string)
 finally:
     for log in log_files:
         log.close()
