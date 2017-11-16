@@ -1,9 +1,7 @@
-import datetime
 import re
 import time
 import heapq
 from collections import namedtuple
-import os
 
 log_data = namedtuple('log_data', ['data', 'string', 'file'])
 

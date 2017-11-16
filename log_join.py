@@ -14,10 +14,12 @@ def main():
         log_combiner = LogCombiner.LogCombiner('test', log_files, r'\[(.+)\]\s+')
         with open('test_log.txt', 'w', encoding='utf-8') as file:
             for log_string in log_combiner.log_generator():
-                    file.write(log_string)
+                print(log_string)
+                file.write(log_string)
     finally:
         for log in log_files:
             log.close()
+
 
 if __name__ == "__main__":
     main()
