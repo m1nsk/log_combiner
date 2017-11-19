@@ -53,3 +53,4 @@ class LogCombiner:
             yield log_item.string
             self._push_heap_data(log_item.file)
         return
+    

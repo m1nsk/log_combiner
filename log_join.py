@@ -16,7 +16,7 @@ def main():
 
     try:
         for log in logs:
-            log_files.append(open(log))
+            log_files.append(open(log, 'r'))
         log_combiner = LogCombiner.LogCombiner(log_files, re_pattern)
         with open('test_log.txt', 'w', encoding='utf-8') as file:
             for log_string in log_combiner.log_generator():
