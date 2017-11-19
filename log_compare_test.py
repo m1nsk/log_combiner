@@ -4,17 +4,15 @@ import filecmp
 
 
 def main():
-    args = sys.argv[1:]
-    if len(args):
-        log_generated = args[0]
-        log_merged = args[1]
-    else:
-        log_generated = 'generated_log.txt'
-        log_merged = 'test_log.txt'
+    print('Введите наименование первого файла'
+          'По умолчанию это generated_log.txt')
+    log_generated = input() or 'generated_log.txt'
+    print('Введите наименование первого файла'
+          'По умолчанию это test_log.txt')
+    log_merged = input() or 'test_log.txt'
     my_dir = os.path.dirname(__file__)
     log_generated = os.path.join(my_dir, log_generated)
     log_merged = os.path.join(my_dir, log_merged)
-    log_files = []
 
     with open(log_generated, 'r', encoding='utf-8') as generated, \
             open(log_merged, 'r', encoding='utf-8') as merged:

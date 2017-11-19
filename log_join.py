@@ -8,11 +8,17 @@ def main():
     I had a lot of time to finish this task, that's why i'we tried to do my best.
     I've decided to complicate the task and considered case with list of log files
     """
-    args = sys.argv[1:]
-    if len(args):
-        logs = args
-    else:
-        logs = ['log1.txt', 'log2.txt', 'log3.txt']
+    read_file_flag = True
+    logs = []
+    while read_file_flag:
+        print('Ввведите имя файла для слияния.'
+              'По умолчанию это log0.txt, log1.txt, log2.txt')
+        file_name = input()
+        if file_name:
+            logs.append(file_name)
+        else:
+            read_file_flag = False
+    logs = logs if len(logs) else ['log0.txt', 'log1.txt', 'log2.txt']
     my_dir = os.path.dirname(__file__)
     logs = list(map(lambda log: os.path.join(my_dir, log), logs))
     re_pattern = r'\[(.+)\]\s+'
